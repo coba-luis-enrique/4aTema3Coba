@@ -6,6 +6,7 @@
 package pkg4atema3coba;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +17,16 @@ public class obtenerDeterminante
     
 public double [][]matrizEspiral(int n){
         Scanner sc = new Scanner(System.in);
-        int i, j, mayor, menor;
+        int i, j, mayor, menor,a;
         int filaMayor, filaMenor, colMayor, colMenor;
         double [][] A = new double[n][n];
-        System.out.println("Lectura de elementos de la matriz: ");
+        JOptionPane.showMessageDialog(null,"Lectura de elementos de la matriz: ");
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
-                System.out.print("A[" + i + "][" + j + "]= ");
-                A[i][j] = sc.nextInt();
+                 //JOptionPane.showMessageDialog(null,"A[" + i + "][" + j + "]= ");
+                 
+                 a=Integer.parseInt(JOptionPane.showInputDialog(null, "A[" + i + "][" + j + "]= "));
+                 A[i][j] = a;
             }
         }
         return A;

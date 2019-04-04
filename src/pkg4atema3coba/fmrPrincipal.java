@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pkg4atema3coba;
+import javax.swing.JOptionPane;
 import pkg4atema3coba.obtenerDeterminante;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +39,8 @@ public class fmrPrincipal extends javax.swing.JFrame {
         tlbMatrizUno = new javax.swing.JTable();
         txtN = new javax.swing.JTextField();
         btnGenerar = new javax.swing.JButton();
+        btnGenerar2 = new javax.swing.JButton();
+        btnGenerar3 = new javax.swing.JButton();
         txtD = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,6 +77,26 @@ public class fmrPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnGenerar);
         btnGenerar.setBounds(310, 70, 150, 23);
+
+        btnGenerar2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGenerar2.setText("Salir");
+        btnGenerar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerar2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGenerar2);
+        btnGenerar2.setBounds(150, 30, 150, 23);
+
+        btnGenerar3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGenerar3.setText("Nueva Matriz");
+        btnGenerar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerar3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGenerar3);
+        btnGenerar3.setBounds(480, 30, 150, 23);
         getContentPane().add(txtD);
         txtD.setBounds(530, 350, 100, 30);
 
@@ -119,9 +142,21 @@ public class fmrPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        int n= Integer.parseInt(txtN.getText());
+     int n=0;
+        try{
+        n= Integer.parseInt(txtN.getText());
         double [][] c= mat.matrizEspiral(n);
         double determinate= mat.Determinante(0, c); //calculando la determinate
+        if(n==2){
+            double [][]matad2x2=mat.AdjuntaMatriz2x2(c);
+            double [][]mattrans=mat.TransouestaMatriz(matad2x2);
+            double [][]inversa=mat.inversaMat2x2(mattrans, determinate);
+            resultUno=String.valueOf(determinate);
+            txtD.setText(resultUno);
+            this.mostrarMatriz(c, n);
+            this.mostrarMatrizUno(inversa,n);
+            this.mostrarMatriz(c, n);
+        }else{
         double[][]MatAdjunta=mat.AdjuntaMatriz(c);
         double[][]MatTrans=mat.TransouestaMatriz(MatAdjunta);
         double [][]Inversa=mat.inversaMatriz(MatTrans, determinate);
@@ -131,7 +166,29 @@ public class fmrPrincipal extends javax.swing.JFrame {
         this.mostrarMatriz(c, n);
         this.mostrarMatrizUno(Inversa,n);
         this.mostrarMatriz(c, n);
+        }
+     }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "ingrese solo numeros");
+         this.dispose();
+         new fmrPrincipal().setVisible(true);
+         setLocationRelativeTo(null);
+         setSize(777,420);
+         setResizable(false);
+     }
+        
     }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void btnGenerar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar2ActionPerformed
+         this.dispose(); // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerar2ActionPerformed
+
+    private void btnGenerar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar3ActionPerformed
+         this.dispose();
+         new fmrPrincipal().setVisible(true);
+         setLocationRelativeTo(null);
+         setSize(777,420);
+         setResizable(false);// TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerar3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +251,8 @@ for(int i=0; i<n; i++){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;
+    private javax.swing.JButton btnGenerar2;
+    private javax.swing.JButton btnGenerar3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

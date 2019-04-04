@@ -144,4 +144,32 @@ public double [][]inversaMatriz(double [][]matriz,double x){
     }
     return inMatriz;   
 }
+
+//adjunta defina para matriz 2x2
+public double [][]AdjuntaMatriz2x2(double [][]matriz){
+   double[][]mat=new double[matriz.length][matriz.length];
+    
+    mat [0][0]=Math.pow(-1,1+1)*matriz[1][1];
+    mat [0][1]=Math.pow(-1,1+2)*matriz[1][0];
+    mat [1][0]=Math.pow(-1,2+1)*matriz[0][1];
+    mat [1][1]=Math.pow(-1,2+2)*matriz[0][0];
+     
+  return mat;  
+}
+
+//matriz inversa 2x2
+public double [][]inversaMat2x2(double [][]matriz,double x){
+    double[][]inMatriz=new double[matriz.length][matriz.length];
+    for (int i = 0; i <matriz.length; i++) 
+            {
+                for (int j = 0; j < matriz.length; j++) 
+                {
+                    inMatriz[i][j]=matriz[i][j]/x;               
+                }
+    }
+    return inMatriz;      
+}
+
+
+
 }
